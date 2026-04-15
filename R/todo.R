@@ -5,15 +5,13 @@ suppressPackageStartupMessages({
 
 TASK_FILE <- "test_list.txt" # nolint
 
+# remove spaces and empty lines
 clean_todo_list <- function() {
-  # 1. Read the file
   todo_list_file <- readLines(TASK_FILE, warn = FALSE)
   
-  # 2. Clean the file (remove spaces and empty lines)
   todo_list_file <- trimws(todo_list_file)
   todo_list_file <- todo_list_file[todo_list_file != ""]
   
-  # 3. Return the cleaned data
   return(todo_list_file)
 }
 
@@ -26,8 +24,8 @@ count_todo_list <- function() {
 }
 
 add_task <- function(task) {
-  cat(task, file = TASK_FILE, append = TRUE, sep = "\n") #adds 'task' to the file
-  cat("You have added a new task, you have", paste(count_todo_list()), "tasks to do!", "\n")
+  print(task, file = TASK_FILE, append = TRUE, sep = "\n") #adds 'task' to the file
+  print("You have added a new task, you have", paste(count_todo_list()), "tasks to do!", "\n")
 }
 
 list_tasks <- function() {
@@ -43,8 +41,8 @@ list_tasks <- function() {
   output <- paste(numbered_list, collapse = "\n") #for the test
   
   #for user
-  cat("You have", count_todo_list(), "tasks. Here is your todo list:\n")
-  cat(numbered_list, sep = "\n")
+  print("You have", count_todo_list(), "tasks. Here is your todo list:\n")
+  print(numbered_list, sep = "\n")
   }
   return(output) #for test
 }
@@ -64,8 +62,8 @@ remove_task <- function(index) {
     # with our new version that is missing the deleted task.
     writeLines(updated_list, TASK_FILE)
     
-    cat("Task", index, "removed successfully!\n")
-    cat("You have", count_todo_list(), "tasks left to go!")
+    print("Task", index, "removed successfully!\n")
+    print("You have", count_todo_list(), "tasks left to go!")
   }
 }
 
@@ -78,7 +76,7 @@ main <- function(args) {
   } else if (!is.null(args$remove)) {
     remove_task(as.numeric(args$remove))
   } else {
-    cat("Use --help to get help on using this program")
+    print("Use --help to get help on using this program")
   }
 }
 
