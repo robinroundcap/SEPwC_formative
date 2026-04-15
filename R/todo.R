@@ -24,8 +24,8 @@ count_todo_list <- function() {
 }
 
 add_task <- function(task) {
-  print(task, file = TASK_FILE, append = TRUE, sep = "\n") #adds 'task' to the file
-  print("You have added a new task, you have", paste(count_todo_list()), "tasks to do!", "\n")
+  cat(task, file = TASK_FILE, append = TRUE, sep = "\n") #adds 'task' to the file
+#  cat("You have added a new task, you have", paste(count_todo_list()), "tasks to do!", "\n")
 }
 
 list_tasks <- function() {
@@ -41,8 +41,8 @@ list_tasks <- function() {
   output <- paste(numbered_list, collapse = "\n") #for the test
   
   #for user
-  print("You have", count_todo_list(), "tasks. Here is your todo list:\n")
-  print(numbered_list, sep = "\n")
+#  cat("You have", count_todo_list(), "tasks. Here is your todo list:\n")
+  cat(numbered_list, sep = "\n")
   }
   return(output) #for test
 }
@@ -62,8 +62,8 @@ remove_task <- function(index) {
     # with our new version that is missing the deleted task.
     writeLines(updated_list, TASK_FILE)
     
-    print("Task", index, "removed successfully!\n")
-    print("You have", count_todo_list(), "tasks left to go!")
+    cat("Task", index, "removed successfully!\n")
+    cat("You have", count_todo_list(), "tasks left to go!")
   }
 }
 
