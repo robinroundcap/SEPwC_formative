@@ -21,7 +21,6 @@ count_todo_list <- function() {
 
 add_task <- function(task) {
   cat(task, file = TASK_FILE, append = TRUE, sep = "\n") #adds 'task' to file
-  #  cat("You have", paste(count_todo_list()), "tasks to do!", "\n")
 }
 
 list_tasks <- function() {
@@ -37,19 +36,14 @@ list_tasks <- function() {
     numbered_list <- paste(line_numbers, todo_list_file, sep = ". ")
 
     output <- paste(numbered_list, collapse = "\n") # for the test
-
-    # for user
-    #  cat("You have", count_todo_list(), "tasks. Here is your todo list:\n")
-    #  cat(numbered_list, sep = "\n")
   }
-  return(output) # for test
 }
 
 remove_task <- function(index) {
   todo_list_file <- clean_todo_list()
 
   # Check if the index is valid
-  if (index > length(todo_list_file) | index <= 0) {
+  if (index > length(todo_list_file) || index <= 0) {
     stop("Error: Task number", index, "does not exist.\n")
   } else {
     # Remove the task using negative indexing
@@ -57,9 +51,6 @@ remove_task <- function(index) {
 
     # updates file
     writeLines(updated_list, TASK_FILE)
-
-    #    cat("Task", index, "removed successfully!\n")
-    #    cat("You have", count_todo_list(), "tasks left to go!")
   }
 }
 
