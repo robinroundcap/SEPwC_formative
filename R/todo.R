@@ -11,21 +11,17 @@ clean_todo_list <- function() {
 
   todo_list_file <- trimws(todo_list_file)
   todo_list_file <- todo_list_file[todo_list_file != ""]
-
-  return(todo_list_file)
 }
 
 # counts how many tasks are in the file
 count_todo_list <- function() {
   todo_list_file <- clean_todo_list()
   task_count <- length(todo_list_file)
-
-  return(task_count)
 }
 
 add_task <- function(task) {
-  cat(task, file = TASK_FILE, append = TRUE, sep = "\n") # adds 'task' to the file
-  #  cat("You have added a new task, you have", paste(count_todo_list()), "tasks to do!", "\n")
+  cat(task, file = TASK_FILE, append = TRUE, sep = "\n") #adds 'task' to file
+  #  cat("You have", paste(count_todo_list()), "tasks to do!", "\n")
 }
 
 list_tasks <- function() {
@@ -35,8 +31,10 @@ list_tasks <- function() {
     output <- "Your todo list is empty, it's time to relax!"
     cat(output, "\n")
   } else {
-    line_numbers <- 1:length(todo_list_file) # make sequence of numbers the same length as the list
-    numbered_list <- paste(line_numbers, todo_list_file, sep = ". ") # combine numbers and list
+    # make sequence of numbers the same length as the list
+    line_numbers <- seq_along(todo_list_file)
+    # combine numbers and list
+    numbered_list <- paste(line_numbers, todo_list_file, sep = ". ")
 
     output <- paste(numbered_list, collapse = "\n") # for the test
 
